@@ -95,7 +95,7 @@ bind_preview = function(selector, config, e) {
         });
 
         update_coors(selector, config, {'width': img_width}, sel);
-    })();
+    });
 };
 
 update_coors = function(selector, config, img, selection) {
