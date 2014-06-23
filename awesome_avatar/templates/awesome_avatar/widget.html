@@ -15,12 +15,14 @@
 
     <table>
         <tr>
+            {% if not disable_preview %}
             <td>
                 <div id="{{ id }}-preview" class="awesome-avatar-preview"
                         style="width:{{ config.width }}px;height:{{ config.height }}px">
                     <img src="{{ avatar_url }}">
                 </div>
             </td>
+            {% endif %}
             <td>
                 <div id="{{ id }}-select-area" class="awesome-avatar-select-area"
                     style="width:{{ config.select_area_width }}px;height:{{ config.select_area_height }}px">
