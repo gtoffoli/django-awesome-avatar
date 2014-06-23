@@ -8,9 +8,13 @@ from awesome_avatar.settings import config
 class AvatarWidget(FileInput):
 
     def value_from_datadict(self, data, files, name):
+        avatar_file = super(AvatarWidget, self).value_from_datadict(data, files, name)
+        if not avatar_file:
+            return None
+            
         value = {}
-        value['file'] = super(AvatarWidget, self).value_from_datadict(data, files, name)
-
+        value['file'] = avatar_file
+        
         x1 = data.get(name + '-x1', 0)
         y1 = data.get(name + '-y1', 0)
         x2 = data.get(name + '-x2', x1)
