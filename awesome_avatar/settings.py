@@ -12,6 +12,10 @@ class config(object):
 
     select_area_width = 400
     select_area_height = 250
+    
+    # disable resizing down to the config width/height after upload. 
+    # set to true to always receive the maximum image size
+    no_resize = False
 
 
 settings_config = getattr(settings, 'AWESOME_AVATAR', {})

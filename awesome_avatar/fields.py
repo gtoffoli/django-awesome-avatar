@@ -45,7 +45,8 @@ class AvatarField(models.ImageField):
 
             image = Image.open(StringIO(file_.read()))
             image = image.crop(data['box'])
-            image = image.resize((self.width, self.height), Image.ANTIALIAS)
+            if not getattr(config, 'no_resize', False):
+                image = image.resize((self.width, self.height), Image.ANTIALIAS)
 
             content = StringIO()
             image.save(content, config.save_format, quality=config.save_quality)
