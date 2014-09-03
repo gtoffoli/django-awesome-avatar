@@ -3,6 +3,7 @@ from django.forms import FileInput
 from django.template.loader import render_to_string
 
 from awesome_avatar.settings import config
+from django.utils.encoding import force_text
 
 
 class AvatarWidget(FileInput):
@@ -46,7 +47,10 @@ class AvatarWidget(FileInput):
         context = {}
         context['name'] = name
         context['config'] = config
-
+        
+        if value and not hasattr(value, 'url'):
+            raise Exception("An invalid value was supplied as avatar image. The value was '%s'." % force_text(value))
+        
         context['avatar_url'] = value.url if value else '/static/awesome_avatar/default.png'
         context['id'] = attrs.get('id', 'id_' + name)
         # todo fix HACK
