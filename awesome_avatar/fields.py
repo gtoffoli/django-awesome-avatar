@@ -40,7 +40,9 @@ class AvatarField(models.ImageField):
 
     def save_form_data(self, instance, data):
         # if data and self.width and self.height:
-        file_ = data['file']
+        file_ = None
+        if hasattr(data, '__getitem__'):
+            file_ = data['file']
         if file_:
 
             image = Image.open(StringIO(file_.read()))
