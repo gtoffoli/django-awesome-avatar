@@ -20,6 +20,11 @@ class AvatarWidget(FileInput):
         y1 = data.get(name + '-y1', 0)
         x2 = data.get(name + '-x2', x1)
         y2 = data.get(name + '-y2', y1)
+        
+        # check for non-dimensional box, making no changes then
+        if x1 == x2 or y1 == y2:
+            return None
+        
         ratio = data.get(name + '-ratio', 1)
         ratio = float(1 if not ratio else ratio)
 
