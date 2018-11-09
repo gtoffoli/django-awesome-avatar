@@ -16,6 +16,11 @@ class AvatarField(forms.ImageField):
     def to_python(self, data):
         super(AvatarField, self).to_python(getattr(data, 'file', None))
         return data
+    
+    def clean(self, data, initial=None):
+        if not data and initial:
+            return initial
+        return data
 
     def widget_attrs(self, widget):
         return {'width': self.width, 'height': self.height, 'disable_preview': self.disable_preview}
