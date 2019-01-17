@@ -74,19 +74,21 @@ bind_preview = function(selector, config, e) {
         $(selector + '-width').val(ratio_x);
         $(selector + '-height').val(ratio_y);
 
+        // wechange-custom change: selector is always square and max width/height
+        var sel_width = Math.min(img_width, img_height);
         var sel = {};
-        sel['x1'] = Math.round(img_width/2-25 > 0 ? img_width/2-25 : 0),
-        sel['y1'] = Math.round(img_height/2-25 > 0 ? img_height/2-25 : 0),
-        sel['x2'] = Math.round(img_width/2+25 > img_width ? img_width : img_width/2+25),
-        sel['y2'] = Math.round(img_height/2+25 > img_height ? img_height : img_height/2+25),
-        sel['width'] = 50;
+        sel['x1'] = 0,
+        sel['y1'] = 0,
+        sel['x2'] = sel_width,
+        sel['y2'] = sel_width,
+        sel['width'] = sel_width;
 
         $(this).imgAreaSelect({
 //            handles: true,
             aspectRatio: config.width + ":" + config.height,
             fadeSpeed: 100,
-//            minHeight: 50,
-//            minWidth: 50,
+            minHeight: config.select_area_height / 2,
+            minWidth: config.select_area_width / 2,
             x1: sel.x1,
             y1: sel.y1,
             x2: sel.x2,
