@@ -57,4 +57,5 @@ class AvatarWidget(FileInput):
         # todo fix HACK
         context['STATIC_URL'] = settings.STATIC_URL
         context['disable_preview'] = self.attrs['disable_preview']
+        context['required'] = attrs.get('required', False)
         return render_to_string('awesome_avatar/widget.html', context)
