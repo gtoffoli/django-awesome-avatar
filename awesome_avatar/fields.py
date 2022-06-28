@@ -50,8 +50,9 @@ class AvatarField(models.ImageField):
                 file_name = u'{}.{}'.format(os.path.splitext(file_.name)[0], config.save_format)
 
                 # new_data = SimpleUploadedFile(file.name, content.getvalue(), content_type='image/' + config.save_format)
-                new_data = InMemoryUploadedFile(content, None, file_name, 'image/' + config.save_format,
-                                                len(content.getvalue()), None)
+                # 181206 GT - Signature of InMemoryUploadedFile has changed
+                # new_data = InMemoryUploadedFile(content, None, file_name, 'image/' + config.save_format, len(content.getvalue()), None)
+                new_data = InMemoryUploadedFile(content, None, file_name, 'image/' + config.save_format, 'image/' + config.save_format, len(content.getvalue()), None)
                 super(AvatarField, self).save_form_data(instance, new_data)
         except:
             super(AvatarField, self).save_form_data(instance, data)
